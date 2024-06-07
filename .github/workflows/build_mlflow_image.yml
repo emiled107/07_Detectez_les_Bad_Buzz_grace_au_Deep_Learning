@@ -28,6 +28,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: Dockerfile_mlflow
+        file: ./mlflow/Dockerfile
         push: true
         tags: emiled/mlflowimage:latest
