@@ -1,4 +1,4 @@
-name: Build MLFlow Image
+name: Build MLFlow Image 2
 
 on:
   push:
