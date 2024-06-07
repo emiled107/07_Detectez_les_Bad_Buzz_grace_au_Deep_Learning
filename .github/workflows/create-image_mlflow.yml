@@ -2,11 +2,9 @@ name: Deploy MLFlow Image
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'mlflow/**'
-      - '/mlflow/Dockerfile'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
