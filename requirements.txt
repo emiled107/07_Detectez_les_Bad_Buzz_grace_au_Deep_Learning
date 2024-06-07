@@ -1,0 +1,8 @@
+mlflow
+tensorflow
+transformers
+scikit-learn
+pandas
+ftfy
+fasttext
+nltk

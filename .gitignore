@@ -1,0 +1,18 @@
+.github/.DS_Store
+.DS_Store
+
+models/
+# Ignorer le répertoire 'mlruns'
+mlruns/
+
+# Ignorer le répertoire 'notebooks/mlruns'
+notebooks/mlruns/
+
+# Ignorer le répertoire 'mlartifacts'
+mlartifacts/
+
+*.npy
+notebooks/sources/training.1600000.processed.noemoticon.csv
+notebooks/data_clean.csv
+notebooks/lid.176.bin
+notebooks/fasttext_model/
