@@ -1,7 +1,14 @@
 .github/.DS_Store
 .DS_Store
 
-models/
+# Ignorer tout par défaut
+/models/*
+
+# Ne pas ignorer ces fichiers spécifiques
+!models/README.md
+!models/requirements.txt
+!models/upload_to_s3.py
+
 # Ignorer le répertoire 'mlruns'
 mlruns/
 

@@ -1,15 +1,12 @@
-# Utilisez une image de base Python
-FROM python:3.8-slim
+FROM python:3.9-slim
 
-# Définissez le répertoire de travail
-WORKDIR /app
+WORKDIR /api
 
-# Copiez les fichiers de dépendances et installez les paquets nécessaires
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiez votre code source dans l'image
-COPY src/ .
+COPY main.py main.py
+COPY cnn_model.keras cnn_model.keras
+COPY cnn_model_tokenizer.pickle cnn_model_tokenizer.pickle
 
-# Commande pour exécuter votre application
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
