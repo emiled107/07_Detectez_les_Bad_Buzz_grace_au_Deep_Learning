@@ -24,12 +24,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow:latest \
-          --build-arg BACKEND_STORE_URI=${{ secrets.BACKEND_STORE_URI }} \
-          --build-arg DEFAULT_ARTIFACT_ROOT=${{ secrets.DEFAULT_ARTIFACT_ROOT }} \
-          --build-arg MLFLOW_S3_ACCESS_KEY_ID=${{ secrets.MLFLOW_S3_ACCESS_KEY_ID }} \
-          --build-arg MLFLOW_S3_SECRET_ACCESS_KEY=${{ secrets.MLFLOW_S3_SECRET_ACCESS_KEY }} \
-          --build-arg MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
-          --build-arg MLFLOW_TRACKING_USERNAME=${{ secrets.MLFLOW_TRACKING_USERNAME }} \
-          --build-arg MLFLOW_TRACKING_PASSWORD=${{ secrets.MLFLOW_TRACKING_PASSWORD }} .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow:latest -f mlflow/Dockerfile ./mlflow
         docker push ${{ secrets.DOCKER_USERNAME }}/mlflow:latest

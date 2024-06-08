@@ -1,4 +1,4 @@
-name: Build and Push Docker API Image to Docker Hub
+name: Build and Push Docker Image to Docker Hub
 
 on:
   push:
@@ -30,12 +30,12 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_ENDPOINT_URL: ${{ secrets.AWS_S3_ENDPOINT_URL }}
         BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-      run: python3 app/download_model.py
+      run: python3 api/download_model.py
 
-    - name: Copy model files to app directory
+    - name: Copy model files to api directory
       run: |
-        cp cnn_model.keras app/
-        cp cnn_model_tokenizer.pickle app/
+        cp cnn_model.keras api/
+        cp cnn_model_tokenizer.pickle api/
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
@@ -45,5 +45,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/opc:latest ./app
-        docker push ${{ secrets.DOCKER_USERNAME }}/opc:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest -f api/Dockerfile ./api
+        docker push ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest
