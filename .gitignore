@@ -16,3 +16,4 @@ notebooks/sources/training.1600000.processed.noemoticon.csv
 notebooks/data_clean.csv
 notebooks/lid.176.bin
 notebooks/fasttext_model/
+mlflow/Readme
