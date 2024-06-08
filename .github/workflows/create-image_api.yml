@@ -45,5 +45,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest -f api/Dockerfile ./api
-        docker push ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/opc:latest -f api/Dockerfile ./api
+        docker push ${{ secrets.DOCKER_USERNAME }}/opc:latest
