@@ -30,7 +30,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_ENDPOINT_URL: ${{ secrets.AWS_S3_ENDPOINT_URL }}
         BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-      run: python3 api/download_model.py
+      run: python3 api/download_models.py
 
     - name: Copy model files to api directory
       run: |
