@@ -1,4 +1,4 @@
-name: Build and Push Docker Image to Docker Hub
+name: Build and Push Docker API Image to Docker Hub
 
 on:
   push:
@@ -45,5 +45,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest ./app
-        docker push ${{ secrets.DOCKER_USERNAME }}/mlflow-api:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/opc:latest ./app
+        docker push ${{ secrets.DOCKER_USERNAME }}/opc:latest
