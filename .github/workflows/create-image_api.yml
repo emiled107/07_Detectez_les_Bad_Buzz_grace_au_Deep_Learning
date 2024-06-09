@@ -35,7 +35,7 @@ jobs:
     - name: Copy model files to api directory
       run: |
         cp cnn_model.keras api/
-        cp cnn_model_tokenizer.pickle api/
+        cp cnn_model_tokenizer.json api/
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
