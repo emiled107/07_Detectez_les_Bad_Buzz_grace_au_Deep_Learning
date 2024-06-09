@@ -14,10 +14,10 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 ENV PATH /opt/conda/bin:$PATH
 
 # Copier le fichier YAML pour créer l'environnement conda
-COPY bert_sentiment_analysis.yaml /tmp/bert_sentiment_analysis.yaml
+COPY bert_sentiment_analysis_x86.yaml /tmp/bert_sentiment_analysis_x86.yaml
 
 # Créer l'environnement conda à partir du fichier YAML
-RUN conda env create -f /tmp/bert_sentiment_analysis.yaml
+RUN conda env create -f /tmp/bert_sentiment_anylis.yaml
 
 # Assurer que conda est initialisé dans le shell
 RUN echo "conda activate bert_sentiment_analysis" >> ~/.bashrc
