@@ -26,12 +26,16 @@ RUN echo "source /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 # Utiliser le shell bash avec conda initialisé
 SHELL ["/bin/bash", "--login", "-c"]
 
-# Copier les fichiers de l'application
-WORKDIR /api
-COPY . .
-
 # Activer l'environnement conda et installer les dépendances de l'application
 RUN source /opt/conda/etc/profile.d/conda.sh && conda activate bert_sentiment_analysis
+
+# Copier les fichiers de l'application
+WORKDIR /api
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+COPY main.py main.py
+COPY cnn_model.keras cnn_model.keras
+COPY cnn_model_tokenizer.pickle cnn_model_tokenizer.pickle
 
 # Définir le point d'entrée pour le conteneur
 ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "bert_sentiment_analysis", "python", "main.py"]
