@@ -20,16 +20,20 @@ COPY bert_sentiment_analysis_x86.yaml /tmp/bert_sentiment_analysis_x86.yaml
 RUN conda env create -f /tmp/bert_sentiment_analysis_x86.yaml
 
 # Assurer que conda est initialisé dans le shell
-RUN echo "conda activate bert_sentiment_analysis" >> ~/.bashrc
+RUN echo "source /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate bert_sentiment_analysis" >> ~/.bashrc
+
+# Utiliser le shell bash avec conda initialisé
 SHELL ["/bin/bash", "--login", "-c"]
 
-# Activer l'environnement conda
-RUN conda activate bert_sentiment_analysis
+# Activer l'environnement conda et installer les dépendances de l'application
+RUN source /opt/conda/etc/profile.d/conda.sh && conda activate bert_sentiment_analysis && \
+    mkdir /api && cd /api && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copier les fichiers de l'application
 WORKDIR /api
 COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py main.py
 COPY cnn_model.keras cnn_model.keras
 COPY cnn_model_tokenizer.pickle cnn_model_tokenizer.pickle
