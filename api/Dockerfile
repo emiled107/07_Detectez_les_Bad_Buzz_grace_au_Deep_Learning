@@ -27,9 +27,7 @@ RUN echo "source /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 SHELL ["/bin/bash", "--login", "-c"]
 
 # Activer l'environnement conda et installer les dépendances de l'application
-RUN source /opt/conda/etc/profile.d/conda.sh && conda activate bert_sentiment_analysis && \
-    mkdir /api && cd /api && \
-    pip install --no-cache-dir -r requirements.txt
+RUN source /opt/conda/etc/profile.d/conda.sh && conda activate bert_sentiment_analysis
 
 # Copier les fichiers de l'application
 WORKDIR /api
