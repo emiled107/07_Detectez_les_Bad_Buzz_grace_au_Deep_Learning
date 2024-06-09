@@ -17,7 +17,7 @@ ENV PATH /opt/conda/bin:$PATH
 COPY bert_sentiment_analysis_x86.yaml /tmp/bert_sentiment_analysis_x86.yaml
 
 # Créer l'environnement conda à partir du fichier YAML
-RUN conda env create -f /tmp/bert_sentiment_anylis.yaml
+RUN conda env create -f /tmp/bert_sentiment_analysis_x86.yaml
 
 # Assurer que conda est initialisé dans le shell
 RUN echo "conda activate bert_sentiment_analysis" >> ~/.bashrc
