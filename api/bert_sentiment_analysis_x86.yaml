@@ -1,6 +1,7 @@
-name: tf_env
+name: bert_sentiment_analysis
 channels:
   - defaults
+  - conda_forge
 dependencies:
   - _tflow_select=2.2.0=eigen
   - abseil-cpp=20211102.0=hc377ac9_0
