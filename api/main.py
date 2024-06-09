@@ -4,12 +4,13 @@ os.environ['TF_USE_LEGACY_KERAS'] = 'True'  # Ajouter cette ligne
 
 import tensorflow as tf
 import pickle
+import json
 
 app = Flask(__name__)
 
 # Chemins des fichiers
 model_file_path = 'cnn_model.keras'  # Utilisez le nom de dossier pour SavedModel
-tokenizer_file_path = 'cnn_model_tokenizer.pickle'
+tokenizer_file_path = 'cnn_model_tokenizer.json'
 
 print("TensorFlow version:", tf.__version__)
 
@@ -31,8 +32,10 @@ def load_model(path):
 def load_tokenizer(path):
     if os.path.exists(path):
         try:
-            with open(path, 'rb') as handle:
-                tokenizer = pickle.load(handle)
+            with open(path, 'r') as handle:
+                data = json.load(handle)
+                tokenizer = tf.keras.preprocessing.text.Tokenizer()
+                tokenizer.word_index = data['word_index']  # Restaure l'index des mots
                 print("Tokenizer chargé avec succès.")
                 return tokenizer
         except Exception as e:
@@ -66,4 +69,4 @@ def predict():
         return jsonify({'error': f"Erreur lors de la prédiction: {e}"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5004)
+    app.run(host='0.0.0.0', port=5005)

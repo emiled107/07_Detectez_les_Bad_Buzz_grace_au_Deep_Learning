@@ -15,7 +15,7 @@ s3_client = boto3.client('s3',
 
 # Chemins des fichiers à télécharger
 model_file_path = 'cnn_model.keras'
-tokenizer_file_path = 'cnn_model_tokenizer.pickle'
+tokenizer_file_path = 'cnn_model_tokenizer.json'
 
 # Fonctions pour télécharger les fichiers
 def download_file_from_s3(bucket_name, object_name, file_name):
