@@ -24,3 +24,14 @@ notebooks/data_clean.csv
 notebooks/lid.176.bin
 notebooks/fasttext_model/
 mlflow/Readme
+api/cnn_model.keras
+api/cnn_model_tokenizer.pickle
+data/data_clean.csv
+data/data_english_only.csv
+data/sources/training.1600000.processed.noemoticon.csv
+notebooks/checkpoint
+notebooks/checkpoints.data-00000-of-00001
+notebooks/checkpoints.index
+notebooks/cnn_model.keras
+notebooks/embedding_model.keras
+notebooks/lstm_model.keras
