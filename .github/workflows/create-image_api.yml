@@ -14,6 +14,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+
+    - name: Install Python dependencies
+      run: pip3 install boto3
+
+    - name: Download model and tokenizer from S3
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_S3_ENDPOINT_URL: ${{ secrets.AWS_S3_ENDPOINT_URL }}
+        BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+      run: python3 api/download_models.py
+
+    - name: Copy model files to api directory
+      run: |
+        cp cnn_model.keras api/
+        cp cnn_model_tokenizer.json api/
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image to Docker Hub
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/opc:latest -f api/Dockerfile ./api
+        docker push ${{ secrets.DOCKER_USERNAME }}/opc:latest
+
     - name: Azure login
       uses: azure/login@v2
       with:
@@ -25,7 +63,7 @@ jobs:
       run: |
         az container create \
           --resource-group MyResourceGroup \
-          --name mycontainerinstance2 \
+          --name mycontainerinstance \
           --image ${{ secrets.DOCKER_USERNAME }}/opc:latest \
           --cpu 2 \
           --memory 4 \
