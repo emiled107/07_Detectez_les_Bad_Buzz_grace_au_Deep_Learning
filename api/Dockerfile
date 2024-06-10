@@ -26,9 +26,6 @@ RUN echo "source /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 # Utiliser le shell bash avec conda initialisé
 SHELL ["/bin/bash", "--login", "-c"]
 
-# Activer l'environnement conda et installer les dépendances de l'application
-RUN source /opt/conda/etc/profile.d/conda.sh && conda activate bert_sentiment_analysis
-
 # Copier les fichiers de l'application
 WORKDIR /api
 COPY requirements.txt requirements.txt
@@ -41,4 +38,6 @@ COPY cnn_model_tokenizer.json cnn_model_tokenizer.json
 # Copier le script entrypoint dans le conteneur et le définir comme point d'entrée
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Définir le script entrypoint.sh comme point d'entrée
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

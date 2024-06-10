@@ -5,7 +5,7 @@ from main import app
 # Configuration de MLflow pour enregistrer les résultats de test
 import mlflow
 
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("http://localhost:5006")
 mlflow.set_experiment("air_paradis_api_tests")
 
 @pytest.fixture
