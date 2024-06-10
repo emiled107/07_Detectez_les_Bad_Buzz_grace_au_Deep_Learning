@@ -63,7 +63,7 @@ jobs:
       run: |
         az container create \
           --resource-group MyResourceGroup \
-          --name mycontainerinstance \
+          --name mycontainerinstance4 \
           --image ${{ secrets.DOCKER_USERNAME }}/opc:latest \
           --cpu 2 \
           --memory 4 \
@@ -73,4 +73,4 @@ jobs:
 
     - name: Get logs from Azure Container Instance
       run: |
-        az container logs --resource-group MyResourceGroup --name mycontainerinstance
+        az container logs --resource-group MyResourceGroup --name mycontainerinstance4
