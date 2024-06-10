@@ -22,17 +22,17 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Deploy to Azure Container Instance
-      uses: azure/aci-deploy@v1
-      with:
-        resource-group: MyResourceGroup
-        dns-name-label: myapplication
-        image: ${{ secrets.DOCKER_USERNAME }}/opc:latest
-        registry-login-server: docker.io
-        registry-username: ${{ secrets.DOCKER_USERNAME }}
-        registry-password: ${{ secrets.DOCKER_PASSWORD }}
-        name: mycontainerinstance
-        location: eastus
-        environment-variables: |
-          AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_S3_ENDPOINT_URL=${{ secrets.AWS_S3_ENDPOINT_URL }}
+      run: |
+        az container create \
+          --resource-group MyResourceGroup \
+          --name mycontainerinstance2 \
+          --image ${{ secrets.DOCKER_USERNAME }}/opc:latest \
+          --cpu 2 \
+          --memory 4 \
+          --port 5005 \
+          --dns-name-label mycontainerdns4 \
+          --environment-variables WEBSITES_PORT=5005
+
+    - name: Get logs from Azure Container Instance
+      run: |
+        az container logs --resource-group MyResourceGroup --name mycontainerinstance
