@@ -63,14 +63,14 @@ jobs:
       run: |
         az container create \
           --resource-group MyResourceGroup \
-          --name mycontainerinstance4 \
+          --name mycontainerinstance5 \
           --image ${{ secrets.DOCKER_USERNAME }}/opc:latest \
           --cpu 2 \
           --memory 4 \
           --port 5005 \
-          --dns-name-label mycontainerdns4 \
+          --dns-name-label mycontainerdns5 \
           --environment-variables WEBSITES_PORT=5005
 
     - name: Get logs from Azure Container Instance
       run: |
-        az container logs --resource-group MyResourceGroup --name mycontainerinstance4
+        az container logs --resource-group MyResourceGroup --name mycontainerinstance5

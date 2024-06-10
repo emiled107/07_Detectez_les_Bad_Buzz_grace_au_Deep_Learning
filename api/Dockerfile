@@ -34,6 +34,7 @@ WORKDIR /api
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py main.py
+COPY test_app.py test_app.py
 COPY cnn_model.keras cnn_model.keras
 COPY cnn_model_tokenizer.json cnn_model_tokenizer.json
 
