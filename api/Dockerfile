@@ -37,5 +37,7 @@ COPY main.py main.py
 COPY cnn_model.keras cnn_model.keras
 COPY cnn_model_tokenizer.json cnn_model_tokenizer.json
 
-# Définir le point d'entrée pour le conteneur
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "bert_sentiment_analysis", "python", "main.py"]
+# Copier le script entrypoint dans le conteneur et le définir comme point d'entrée
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
