@@ -16,7 +16,7 @@ sleep 10
 
 # Exécuter les tests
 echo "Exécution des tests..."
-pytest test_app.py
+pytest test_app.py -v
 
 # Garder le script en vie pour permettre à l'application principale de continuer à fonctionner
 wait

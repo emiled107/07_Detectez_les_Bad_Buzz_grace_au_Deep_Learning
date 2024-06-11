@@ -36,3 +36,4 @@ notebooks/cnn_model.keras
 notebooks/embedding_model.keras
 notebooks/lstm_model.keras
 api/cnn_model_tokenizer.json
+mlflow.db

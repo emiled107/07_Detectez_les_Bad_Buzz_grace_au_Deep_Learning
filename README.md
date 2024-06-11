@@ -80,23 +80,10 @@ Pour assurer la qualité et la reproductibilité de nos expérimentations, nous 
 Le modèle CNN, étant le plus performant, a été déployé via une API sur une plateforme Cloud gratuite (Azure). Nous avons intégré un pipeline de déploiement continu avec des tests unitaires pour garantir la robustesse de l'API.
 
 ## deploiement azure: 
-az container create \
-    --resource-group myResourceGroup \
-    --name mycontainer \
-    --image emiled/opc \
-    --cpu 2 \
-    --memory 4 \
-    --port 5005 \
-    --dns-name-label mycontainerdns4 \
-    --environment-variables WEBSITES_PORT=5005
 
 ## Conclusion
 
 Notre projet pour Air Paradis démontre l'efficacité des modèles avancés, particulièrement des réseaux de neurones profonds avec embeddings. Le modèle Embedding CNN a montré des performances exceptionnelles, surpassant même le modèle BERT. En intégrant des pratiques MLOps, nous avons assuré une gestion optimisée et reproductible de nos expérimentations, offrant ainsi une solution robuste et prête pour une mise en production.
-
-Pour toute question ou demande de projet similaire, n'hésitez pas à nous contacter chez **Marketing Intelligence Consulting**. Nous sommes ravis d'apporter notre expertise en IA et MLOps pour répondre à vos besoins en marketing digital.
-
-Concrètement, il est nécessaire de simplifier les aides, d'ajouter des contributions volontaires de personnes souhaitant donner sans être imposées, et surtout de cesser d'utiliser les aides et les taxes à des fins politiques. Tout comme l'hygiène au 19ème et au début du 20ème siècle, qui s'est répandue grâce à des initiatives indépendantes avant d'être adoptée par la politique, nous devons aujourd'hui agir indépendamment pour rendre les aides accessibles et efficaces pour tous.
 
 
 
