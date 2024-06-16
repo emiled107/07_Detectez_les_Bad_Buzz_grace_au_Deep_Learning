@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation et Comparaison des Trois Approches de Modélisation pour la Prédiction de Sentiments sur Twitter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        p {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Présentation et Comparaison des Trois Approches de Modélisation pour la Prédiction de Sentiments sur Twitter</h1>
+
+    <h2>Introduction</h2>
+    <p>Dans le cadre de notre projet pour Air Paradis, nous avons mis en œuvre et évalué trois approches distinctes de modélisation pour prédire les sentiments des tweets : un "Modèle sur mesure simple", un "Modèle sur mesure avancé" et un "Modèle avancé BERT". Chaque approche présente ses propres avantages et inconvénients en termes de précision, de temps d'entraînement et de ressources nécessaires. Cet article de blog vise à présenter et comparer ces trois approches, ainsi qu'à détailler la démarche MLOps mise en œuvre pour assurer une gestion et un déploiement efficace des modèles.</p>
+
+    <h2>Modèle sur mesure simple</h2>
+    <p>Le "Modèle sur mesure simple" repose sur des techniques classiques de machine learning, en particulier la régression logistique. Cette approche utilise des techniques de prétraitement telles que la lemmatisation, la stemming, et l'utilisation de FastText pour représenter les mots en vecteurs.</p>
+    
+    <h3>Méthodologie</h3>
+    <ul>
+        <li>Régression Logistique avec Lemmatisation : Les mots sont réduits à leur forme de base (lemme) pour réduire la variance.</li>
+        <li>Régression Logistique avec Stemming : Les mots sont réduits à leur racine, ce qui peut parfois introduire des ambiguïtés mais réduit le nombre de dimensions.</li>
+        <li>Régression Logistique avec FastText : Utilisation de vecteurs de mots pré-entraînés qui capturent des informations contextuelles.</li>
+    </ul>
+
+    <h3>Performances</h3>
+    <p>Précision : 0.739 à 0.775<br>
+    Temps d'entraînement : 3.2 à 6.2 minutes</p>
+
+    <h3>Avantages et Inconvénients</h3>
+    <ul>
+        <li>Avantages : Rapidité d'entraînement et de déploiement, facilité de mise en œuvre.</li>
+        <li>Inconvénients : Précision inférieure comparée aux modèles plus complexes.</li>
+    </ul>
+
+    <h2>Modèle sur mesure avancé</h2>
+    <p>Le "Modèle sur mesure avancé" utilise des réseaux de neurones plus complexes, notamment des LSTM (Long Short-Term Memory) et des CNN (Convolutional Neural Networks), qui sont particulièrement adaptés au traitement du langage naturel.</p>
+
+    <h3>Méthodologie</h3>
+    <ul>
+        <li>TensorFlow/Keras avec Embedding : Utilisation d'embeddings pour représenter les mots en vecteurs denses.</li>
+        <li>TensorFlow/Keras avec Embedding et LSTM : Capable de capturer les relations séquentielles dans les données textuelles.</li>
+        <li>TensorFlow/Keras avec Embedding et CNN : Capture les motifs spatiaux dans le texte.</li>
+    </ul>
+
+    <h3>Performances</h3>
+    <p>Précision (LSTM) : 0.78<br>
+    Temps d'entraînement (LSTM) : 9.8 heures<br>
+    Précision (CNN) : 0.79<br>
+    Temps d'entraînement (CNN) : 2.8 heures</p>
+
+    <h3>Avantages et Inconvénients</h3>
+    <ul>
+        <li>Avantages : Meilleure précision que les modèles simples, capacité à capturer des relations complexes dans les données textuelles.</li>
+        <li>Inconvénients : Temps d'entraînement plus long, nécessite plus de ressources computationnelles.</li>
+    </ul>
+
+    <h2>Modèle avancé BERT</h2>
+    <p>BERT (Bidirectional Encoder Representations from Transformers) est un modèle de réseau de neurones profondément avancé développé par Google, qui utilise des mécanismes d'attention pour comprendre le contexte de chaque mot dans une phrase.</p>
+
+    <h3>Méthodologie</h3>
+    <p>BERT : Fine-tuning d'un modèle pré-entraîné sur notre ensemble de données spécifiques pour la tâche de classification de sentiments.</p>
+
+    <h3>Performances</h3>
+    <p>Précision : 0.768<br>
+    Temps d'entraînement : 7 heures</p>
+
+    <h3>Avantages et Inconvénients</h3>
+    <ul>
+        <li>Avantages : Meilleure précision parmi tous les modèles testés, capacité à capturer des relations complexes dans les données textuelles.</li>
+        <li>Inconvénients : Temps d'entraînement relativement long, nécessite des ressources computationnelles élevées, coût plus élevé pour le déploiement et l'utilisation.</li>
+    </ul>
+
+    <h2>Comparaison des Modèles</h2>
+    <table>
+        <tr>
+            <th>Modèle</th>
+            <th>Précision</th>
+            <th>Temps d'entraînement</th>
+        </tr>
+        <tr>
+            <td>Régression Logistique (simple)</td>
+            <td>0.739-0.775</td>
+            <td>3.2-6.2 minutes</td>
+        </tr>
+        <tr>
+            <td>LSTM (avancé)</td>
+            <td>0.78</td>
+            <td>9.8 heures</td>
+        </tr>
+        <tr>
+            <td>CNN (avancé)</td>
+            <td>0.79</td>
+            <td>2.8 heures</td>
+        </tr>
+        <tr>
+            <td>BERT (avancé)</td>
+            <td>0.768</td>
+            <td>7 heures</td>
+        </tr>
+    </table>
+
+    <h2>Démarche MLOps</h2>
+    <h3>Principes de MLOps</h3>
+    <p>Pour garantir une gestion efficace et reproductible du cycle de vie des modèles, nous avons adopté une démarche orientée MLOps. MLOps (Machine Learning Operations) combine les pratiques de DevOps avec le machine learning pour automatiser et améliorer la gestion des modèles.</p>
+
+    <h3>Automatisation et Répétabilité</h3>
+    <p>Nous avons mis en place des pipelines automatisés pour le prétraitement, l’entraînement et le déploiement des modèles. Cela garantit que chaque étape du processus est reproductible et cohérente, minimisant ainsi les erreurs humaines et les variations non contrôlées.</p>
+
+    <h3>Suivi et Gestion des Expérimentations</h3>
+    <p>MLFlow a été utilisé pour suivre les expériences, enregistrer les modèles et gérer les versions. MLFlow permet de centraliser les résultats des expériences et de comparer facilement les performances des différents modèles. Grâce à son interface utilisateur, il est facile de visualiser les métriques et les paramètres des expérimentations.</p>
+
+    <h3>Déploiement Continu</h3>
+    <p>Un pipeline de déploiement continu (CI/CD) a été mis en place pour déployer le modèle choisi sous forme d’API sur une plateforme Cloud (par exemple, Azure ou AWS). Ce pipeline inclut des tests unitaires automatisés avec pyTest pour vérifier la fonctionnalité du modèle et de l’API. L'utilisation de Git et GitHub pour la gestion du code assure un suivi précis des modifications et facilite la collaboration.</p>
+
+    <h2>Conclusion</h2>
+    <p>Chaque approche de modélisation présente des avantages et des inconvénients en fonction des besoins spécifiques du projet. Les modèles basés sur la régression logistique sont rapides à entraîner et à déployer, mais offrent une précision inférieure. Les modèles avancés comme les LSTM et CNN offrent un bon compromis entre précision et ressources nécessaires. BERT, bien qu'il soit le plus performant, nécessite des ressources et un temps d'entraînement considérablement plus élevés.</p>
+    <p>La démarche MLOps mise en œuvre permet de gérer efficacement ces modèles, assurant une intégration fluide et une maintenance simplifiée. En adoptant ces pratiques, nous avons pu développer un prototype robuste pour Air Paradis, tout en créant une base solide pour l’extension de ce produit à d’autres cas d’usage dans le futur.</p>
+    <p>Ce projet montre clairement que bien que les modèles avancés offrent une meilleure performance, il est crucial de considérer les ressources et les coûts associés. Une approche équilibrée, en utilisant des modèles avancés mais optimisés pour les ressources, peut souvent être la meilleure solution dans un environnement de production.</p>
+
+    <h3 id="wordCount">Nombre de mots : <span id="wordCountValue">0</span></h3>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function countWords(text) {
+                return text.trim().split(/\s+/).length;
+            }
+            let textContent = document.body.innerText;
+            let wordCount = countWords(textContent);
+            document.getElementById("wordCountValue").innerText = wordCount;
+        });
+    </script>
+</body>
+</html>
